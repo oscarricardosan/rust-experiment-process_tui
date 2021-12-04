@@ -25,28 +25,32 @@ impl ThreadListenEvent {
             Event::Input(event) => match event {
                 event::KeyEvent {
                     code: KeyCode::Char('a'),
-                    modifiers: KeyModifiers::CONTROL,
+                    modifiers: KeyModifiers::ALT,
                 }=> {
                     state_app.borrow_mut().current_menu= Menu::Help;
                 }
                 event::KeyEvent {
                     code: KeyCode::Char('i'),
-                    modifiers: KeyModifiers::CONTROL,
+                    modifiers: KeyModifiers::ALT,
                 }=> {
                     state_app.borrow_mut().current_menu= Menu::Main;
                 }
                 event::KeyEvent {
                     code: KeyCode::Char('s'),
-                    modifiers: KeyModifiers::CONTROL,
+                    modifiers: KeyModifiers::ALT,
                 } => {
                     disable_raw_mode()?;
                     state_app.borrow_mut().terminal.show_cursor()?;
                     state_app.borrow_mut().terminal.clear();
                     exit(0);
                 }
-                _ => {}
+                _ => {
+                    dbg!(event);
+                }
             },
-            Event::Tick => {}
+            Event::Tick => {
+
+            }
         }
 
         Ok(())
