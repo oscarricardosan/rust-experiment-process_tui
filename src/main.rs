@@ -1,19 +1,12 @@
 use std::sync::mpsc;
-use std::{io, thread};
-use std::borrow::Borrow;
+use std::{io};
 use std::cell::RefCell;
 use std::error::Error;
 use std::rc::Rc;
-use std::time::{Duration, Instant};
-use crossterm::event;
-use crossterm::event::{Event as CrosstermEvent, KeyCode, KeyEvent, KeyModifiers};
-use crossterm::terminal::{disable_raw_mode, enable_raw_mode};
+use crossterm::event::{Event as CrosstermEvent, KeyEvent};
+use crossterm::terminal::{enable_raw_mode};
 use tui::backend::{Backend, CrosstermBackend};
-use tui::layout::{Alignment, Constraint, Direction, Layout};
-use tui::style::{Color, Modifier, Style};
 use tui::Terminal;
-use tui::text::{Span, Spans};
-use tui::widgets::{Block, Borders, BorderType, ListState, Paragraph, Tabs};
 use crate::listen_event::ThreadListenEvent;
 use crate::sender_event::ThreadSendEvent;
 
@@ -86,5 +79,4 @@ fn main() -> Result<(), Box<dyn Error>> {
         ThreadListenEvent::handle(rx.clone(), state_app.clone());
     }
 
-    Ok(())
 }

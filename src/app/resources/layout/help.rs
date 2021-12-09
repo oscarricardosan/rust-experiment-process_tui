@@ -37,7 +37,7 @@ impl LayoutHelp {
             .split(size);
 
         frame.render_widget(self.render_tabs(), panels[0]);
-        frame.render_widget(self.render_home(), panels[1]);
+        frame.render_widget(self.render_content(), panels[1]);
         frame.render_widget(self.render_footer(), panels[2]);
     }
 
@@ -89,7 +89,7 @@ impl LayoutHelp {
         copyright
     }
 
-    fn render_home(&self) -> Paragraph{
+    fn render_content(&self) -> Paragraph{
         let home = Paragraph::new(vec![
             Spans::from(vec![Span::raw("")]),
             Spans::from(vec![Span::raw("Bienvenido")]),

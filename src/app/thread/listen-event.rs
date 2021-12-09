@@ -1,15 +1,12 @@
 use std::cell::RefCell;
 use std::error::Error;
-use std::io::Stdout;
-use std::ops::Deref;
 use std::process::exit;
 use std::rc::Rc;
 use std::sync::mpsc::Receiver;
 use crossterm::event;
-use crossterm::event::{Event as CrosstermEvent, KeyCode, KeyEvent, KeyModifiers};
+use crossterm::event::{KeyCode, KeyModifiers};
 use crossterm::terminal::disable_raw_mode;
-use tui::backend::{Backend, CrosstermBackend};
-use tui::Terminal;
+use tui::backend::{Backend};
 use crate::{Event, Menu, StateApp};
 
 pub struct ThreadListenEvent {
