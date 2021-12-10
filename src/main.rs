@@ -39,9 +39,9 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     let stdout = io::stdout();
     let backend = CrosstermBackend::new(stdout);
-    let mut terminal = Terminal::new(backend)?;
+    let terminal = Terminal::new(backend)?;
 
-    let mut state_app= Rc::new(
+    let state_app= Rc::new(
         RefCell::new(
             StateApp{
                 current_menu: Menu::Main,
@@ -51,7 +51,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     );
 
     enable_raw_mode().expect("cant run in raw mode");
-    state_app.borrow_mut().terminal.clear();
+    state_app.borrow_mut().terminal.clear()?;
 
     loop {
         let config_render= ConfigRender::new();
@@ -69,7 +69,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             }
         })?;
 
-        ThreadListenEvent::handle(rx.clone(), state_app.clone());
+        ThreadListenEvent::handle(rx.clone(), state_app.clone())?;
     }
 
 }

@@ -1,10 +1,7 @@
-use std::io::Stdout;
-use tui::backend::CrosstermBackend;
-use tui::Frame;
-use tui::layout::{Alignment, Constraint, Direction, Layout};
+use tui::layout::{Alignment};
 use tui::style::{Color, Modifier, Style};
 use tui::text::{Span, Spans};
-use tui::widgets::{Block, Borders, BorderType, Paragraph, Tabs};
+use tui::widgets::{Block, Borders, BorderType, Paragraph};
 use crate::app::config::config_render::ConfigRender;
 use crate::BaseLayout;
 

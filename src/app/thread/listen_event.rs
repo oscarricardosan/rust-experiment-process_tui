@@ -38,7 +38,7 @@ impl ThreadListenEvent {
                 } => {
                     disable_raw_mode()?;
                     state_app.borrow_mut().terminal.show_cursor()?;
-                    state_app.borrow_mut().terminal.clear();
+                    state_app.borrow_mut().terminal.clear()?;
                     exit(0);
                 }
                 _ => {
