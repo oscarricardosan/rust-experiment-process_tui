@@ -5,7 +5,7 @@ use tui::layout::{Alignment, Constraint, Direction, Layout};
 use tui::style::{Color, Modifier, Style};
 use tui::text::{Span, Spans};
 use tui::widgets::{Block, Borders, BorderType, Paragraph, Tabs};
-use crate::config_render::ConfigRender;
+use crate::app::config::config_render::ConfigRender;
 
 pub trait BaseLayout{
 

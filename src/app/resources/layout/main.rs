@@ -2,20 +2,18 @@ use tui::layout::{Alignment};
 use tui::style::{Color, Modifier, Style};
 use tui::text::{Span, Spans};
 use tui::widgets::{Block, Borders, BorderType, Paragraph};
-use crate::config_render::ConfigRender;
-use crate::layout_main::base::BaseLayout;
+use crate::app::config::config_render::ConfigRender;
+use crate::app::resources::layout::base::BaseLayout;
 
-mod base;
-
-pub struct LayoutMain {
+pub struct LayoutMain{
     config_render: ConfigRender
 }
 
 impl LayoutMain {
 
-    pub fn new ()-> LayoutMain {
+    pub fn new (config_render: ConfigRender)-> LayoutMain {
         LayoutMain{
-            config_render: ConfigRender::new()
+            config_render
         }
     }
 }

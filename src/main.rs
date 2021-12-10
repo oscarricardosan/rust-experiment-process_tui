@@ -7,21 +7,14 @@ use crossterm::event::{Event as CrosstermEvent, KeyEvent};
 use crossterm::terminal::{enable_raw_mode};
 use tui::backend::{Backend, CrosstermBackend};
 use tui::Terminal;
-use crate::listen_event::ThreadListenEvent;
-use crate::sender_event::ThreadSendEvent;
+use crate::app::config::config_render::ConfigRender;
+use crate::app::resources::layout::base::BaseLayout;
+use crate::app::resources::layout::help::LayoutHelp;
+use crate::app::resources::layout::main::LayoutMain;
+use crate::app::thread::listen_event::ThreadListenEvent;
+use crate::app::thread::sender_event::ThreadSendEvent;
 
-#[path = "app/resources/layout/main.rs"]
-mod layout_main;
-#[path = "app/resources/layout/help.rs"]
-mod layout_help;
-
-#[path = "app/conifg/config_render.rs"]
-mod config_render;
-
-#[path = "app/thread/sender-event.rs"]
-mod sender_event;
-#[path = "app/thread/listen-event.rs"]
-mod listen_event;
+mod app;
 
 pub enum Event{
     Input(KeyEvent),
@@ -60,17 +53,17 @@ fn main() -> Result<(), Box<dyn Error>> {
     enable_raw_mode().expect("cant run in raw mode");
     state_app.borrow_mut().terminal.clear();
 
-
     loop {
+        let config_render= ConfigRender::new();
         let current_menu= state_app.borrow_mut().current_menu;
         state_app.borrow_mut().terminal.draw(|frame| {
             match current_menu {
                 Menu::Main=> {
-                    let layout= layout_main::LayoutMain::new();
+                    let layout= LayoutMain::new(config_render);
                     layout.render(frame);
                 }
                 Menu::Help=> {
-                    let layout= layout_help::LayoutHelp::new();
+                    let layout= LayoutHelp::new(config_render);
                     layout.render(frame);
                 }
             }
